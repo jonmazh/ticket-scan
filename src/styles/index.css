@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background: #f5f6f8;
+  }
+  body {
+    @apply bg-surface text-ink antialiased;
+    font-feature-settings: 'tnum' 0;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    min-height: 100dvh;
+  }
+  /* Evita el zoom automático de Safari al enfocar campos (necesita >= 16px) */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+  button {
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
+  :focus-visible {
+    outline: 2px solid #12a877;
+    outline-offset: 2px;
+  }
+  input[type='date']::-webkit-date-and-time-value {
+    text-align: left;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-surface-card shadow-card;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .field {
+    @apply block w-full rounded-xl border border-surface-line bg-white px-3.5 py-3 text-[16px] text-ink outline-none transition placeholder:text-ink-faint focus:border-brand-500 focus:ring-4 focus:ring-brand-100;
+  }
+  .field-sm {
+    @apply block w-full rounded-lg border border-surface-line bg-white px-2.5 py-2 text-[16px] text-ink outline-none transition placeholder:text-ink-faint focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
+  }
+  .label {
+    @apply mb-1.5 block text-[13px] font-medium text-ink-mute;
+  }
+  .section-title {
+    @apply px-1 text-[13px] font-semibold uppercase tracking-wide text-ink-mute;
+  }
+  .pressable {
+    @apply transition active:scale-[0.98] active:opacity-90;
+  }
+}
+
+@layer utilities {
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pl-safe {
+    padding-left: env(safe-area-inset-left);
+  }
+  .pr-safe {
+    padding-right: env(safe-area-inset-right);
+  }
+  .mb-nav {
+    margin-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+  .bottom-nav-offset {
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

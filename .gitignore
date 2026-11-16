@@ -1,0 +1,8 @@
+node_modules
+dist
+dev-dist
+coverage
+*.local
+.DS_Store
+# Recursos OCR copiados automáticamente desde node_modules (npm install / npm run build)
+public/ocr
